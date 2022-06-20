@@ -5,22 +5,22 @@
 #ifndef CPRACTICE_FLOYDWARSHALL_H
 #define CPRACTICE_FLOYDWARSHALL_H
 
-#define Vf 4
-#define INF INT_MAX
+#define size 4
+#define INF 99999
 
 // A function to print the solution matrix
-void printSolutionF(int dist[][Vf]);
+void printSolutionF(int dist[][size]);
 
-void floydWarshall (int graph[][Vf]) {
-    int dist[Vf][Vf], i, j, k;
+void floydWarshall (int graph[][size]) {
+    int dist[size][size], i, j, k;
 
-    for (i = 0; i < Vf; i++)
-        for (j = 0; j < Vf; j++)
+    for (i = 0; i < size; i++)
+        for (j = 0; j < size; j++)
             dist[i][j] = graph[i][j];
 
-    for (k = 0; k < Vf; k++) {//經過哪個點
-        for (i = 0; i < Vf; i++) {//起始點
-            for (j = 0; j < Vf; j++) {//終點
+    for (k = 0; k < size; k++) {//經過哪個點
+        for (i = 0; i < size; i++) {//起始點
+            for (j = 0; j < size; j++) {//終點
                 if (dist[i][k] + dist[k][j] < dist[i][j])
                     dist[i][j] = dist[i][k] + dist[k][j];
             }
@@ -32,11 +32,11 @@ void floydWarshall (int graph[][Vf]) {
 }
 
 /* A utility function to print solution */
-void printSolutionF(int dist[][Vf]) {
+void printSolutionF(int dist[][size]) {
     printf ("The following matrix shows the shortest distances"
             " between every pair of vertices \n");
-    for (int i = 0; i < Vf; i++) {
-        for (int j = 0; j < Vf; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             if (dist[i][j] == INF)
                 printf("%7s", "INF");
             else
@@ -58,7 +58,7 @@ int floydWarshallExecute()
        \|/         |
        (1)------->(2)
             3           */
-    int graph[Vf][Vf] = {{0,   5,   INF, 10},
+    int graph[size][size] = {{0,   5,   INF, 10},
                          {INF, 0,   3, INF},
                          {INF, INF, 0,   1},
                          {INF, INF, INF, 0}
