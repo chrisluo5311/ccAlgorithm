@@ -31,7 +31,7 @@ double optimalStorageOnTape(int arr[],int n){
 }
 
 int storageExecute(){
-    int arr[] = {2,5,4};
+    int arr[] = {12,5,8,32,7,5,18,26,4,3,11,10,6};
     int n = sizeof(arr) / sizeof(arr[0]);
     optimalStorageOnTape(arr,n);
     return 0;

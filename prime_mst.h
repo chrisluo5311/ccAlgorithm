@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 // 圖中有幾個vertex
-#define V 6
+#define Vf 6
 
 struct sequencePair{
     int parent;
@@ -21,32 +21,32 @@ struct sequencePair{
 int minKey(int key[], bool mstSet[]){
     int min = INT_MAX, min_index;
 
-    for (int v = 0; v < V; v++)
+    for (int v = 0; v < Vf; v++)
         if (mstSet[v] == false && key[v] < min)
             min = key[v], min_index = v;
 
     return min_index;
 }
 
-void primMST(int graph[V][V]){
+void primMST(int graph[Vf][Vf]){
     // 放父vertex的陣列
-    int parent[V];
+    int parent[Vf];
     // 放最小weight的值
-    int key[V];
+    int key[Vf];
     // 設置已包含在mst中的布林值
-    bool mstSet[V];
+    bool mstSet[Vf];
     //紀錄圖形連結順序
-    struct sequencePair sequencePair[V];
+    struct sequencePair sequencePair[Vf];
 
     // 初始化所有key值為最大數 所有mst為false表示都尚未列入mst中
-    for (int i = 0; i < V; i++)
+    for (int i = 0; i < Vf; i++)
         key[i] = INT_MAX, mstSet[i] = false;
 
     key[0] = 0;
     parent[0] = -1; // First node is always root of MST
     struct sequencePair sp;
 
-    for (int count = 0; count < V ; count++) {
+    for (int count = 0; count < Vf ; count++) {
         // 找最小的key
         int u = minKey(key, mstSet);
 
@@ -58,7 +58,7 @@ void primMST(int graph[V][V]){
         sequencePair[count] = sp;
 
         // 找下個被連結的vertex中所有edge的權重，記錄在key值與parent值
-        for (int v = 0; v < V; v++)
+        for (int v = 0; v < Vf; v++)
 
             // graph[u][v] is non-zero only for adjacent vertices of m
             // mstSet[v] is false for vertices not yet included in MST
@@ -69,7 +69,7 @@ void primMST(int graph[V][V]){
 
     //按照連結順序印出MST
     printf("Edge \tWeight\n");
-    for(int i = 0 ; i < V ;i++){
+    for(int i = 0 ; i < Vf ; i++){
         if(i>0){
             printf("%d - %d \t%d \n",sequencePair[i].parent,sequencePair[i].child,key[sequencePair[i].child]);
         }
@@ -77,12 +77,12 @@ void primMST(int graph[V][V]){
 }
 
 int primeMstExecute(){
-    int graph[V][V] = { { 0, 2, 0, 6, 0 ,0},
-                        { 2, 0, 3, 8, 5 ,0},
-                        { 0, 3, 0, 0, 7 ,0},
-                        { 6, 8, 0, 0, 9 ,10},
-                        { 0, 5, 7, 9, 0 ,0},
-                        { 0, 0, 0, 10,0 ,0}};
+    int graph[Vf][Vf] = {{0, 2, 0, 6,  0 , 0},
+                         {2, 0, 3, 8,  5 , 0},
+                         {0, 3, 0, 0,  7 , 0},
+                         {6, 8, 0, 0,  9 , 10},
+                         {0, 5, 7, 9,  0 , 0},
+                         {0, 0, 0, 10, 0 , 0}};
 
     primMST(graph);
 

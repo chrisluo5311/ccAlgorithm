@@ -15,6 +15,8 @@
 #include "kruskalAlgo.h"
 #include "optimalStorageOnTape.h"
 #include "singleSourceShortestPath.h"
+#include "multistageGraphShortestPath.h"
+#include "floydWarshall.h"
 
 
 int main() {
@@ -32,6 +34,10 @@ int main() {
 //    containerLoadingExecute();
 //    kruskalExecute();
 //    storageExecute();
-    singleSourceShortestPath();
+//    singleSourceShortestPath();
+//    multistageGraphExecute();
+    floydWarshallExecute();
+
+
     return 0;
 }

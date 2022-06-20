@@ -26,6 +26,7 @@ void printJobScheduling(Job arr[], int n){
 
     int result[n]; // To store result (Sequence of jobs)
     bool slot[n]; // To keep track of free time slots
+    int sum = 0;
 
     // Initialize all slots to be free
     for (int i = 0; i < n; i++)
@@ -37,6 +38,7 @@ void printJobScheduling(Job arr[], int n){
             // Free slot found
             if (slot[j] == false) {
                 result[j] = i; // Add this job to result
+                sum += arr[j].profit;
                 slot[j] = true; // Make this slot occupied
                 break;
             }
@@ -47,14 +49,17 @@ void printJobScheduling(Job arr[], int n){
     for (int i = 0; i < n; i++)
         if (slot[i])
             printf("%c ", arr[result[i]].id);
+
+    printf("profit: %d",sum);
 }
 
 int jobSequenceExecute(){
-    Job arr[] = { { 'a', 2, 100 },
-                  { 'b', 1, 19 },
-                  { 'c', 2, 27 },
-                  { 'd', 1, 25 },
-                  { 'e', 3, 15 } };
+    Job arr[] = { { '1', 3, 7 },
+                  { '2', 4, 6 },
+                  { '3', 6, 5 },
+                  { '4', 5, 4 },
+                  { '5', 2, 3 },
+                  {'6',4,2}};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Following is maximum profit sequence of jobs \n");
 
